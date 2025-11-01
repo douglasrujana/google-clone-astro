@@ -9,6 +9,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.15.3"
+    "@astrojs/svelte": "^7.2.1",
+    "@astrojs/tailwind": "^0.0.2-next.0",
+    "@tailwindcss/vite": "^4.1.16",
+    "astro": "^5.15.3",
+    "google-auth-library": "^10.5.0",
+    "i18next": "^25.6.0",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "i18next-http-backend": "^3.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "svelte": "^5.43.2",
+    "tailwindcss": "^4.1.16",
+    "typescript": "^5.9.3"
   }
 }

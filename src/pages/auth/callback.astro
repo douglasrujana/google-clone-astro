@@ -1,0 +1,41 @@
+---
+// Esta lógica ahora se ejecuta en el servidor
+const code = Astro.url.searchParams.get("code");
+
+if (code) {
+	try {
+		// La URL debe ser absoluta cuando se llama desde el servidor
+		const response = await fetch(new URL("/api/auth", Astro.url.origin), {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ code }),
+		});
+
+		if (response.ok) {
+			const { token } = await response.json();
+			// Guardamos el token en una cookie httpOnly para seguridad
+			Astro.cookies.set("authToken", token, {
+				path: "/",
+				httpOnly: true,
+				secure: import.meta.env.PROD, // Solo https en producción
+				maxAge: 60 * 60, // 1 hora
+			});
+		} else {
+			const { error } = await response.json();
+			console.error("Auth failed on callback:", error);
+		}
+	} catch (error) {
+		console.error("Error during auth token exchange:", error);
+	}
+} else {
+	console.warn("No authorization code found in URL.");
+}
+
+// Redirigir al usuario a la página principal
+return Astro.redirect("/");
+---
+
+<!-- El usuario nunca verá esta página, será redirigido inmediatamente. -->
+<p>Processing authentication...</p>

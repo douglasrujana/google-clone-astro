@@ -1,0 +1,221 @@
+/* Estilos básicos */
+body {
+    font-family: arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    color: #202124;
+}
+
+/* Barra de navegación superior */
+.top-nav {
+    height: 60px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    padding: 6px;
+    height: 48px;
+}
+
+.nav-links a {
+    color: rgba(0, 0, 0, 0.87);
+    text-decoration: none;
+    font-size: 13px;
+    padding-left: 15px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.apps-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.apps-button:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.apps-button .material-icons {
+    color: #5f6368;
+    font-size: 24px;
+}
+
+.signin-button {
+    background-color: #1a73e8;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 36px;
+    letter-spacing: .25px;
+    line-height: 16px;
+    padding: 0 24px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.signin-button:hover {
+    background-color: #2b7de9;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+}
+
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-menu .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Estilo del contenedor principal */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 560px);
+    max-height: 290px;
+    padding-top: 150px;
+}
+
+/* Logo */
+.logo {
+    max-height: 92px;
+    position: relative;
+    height: 100%;
+    margin-top: auto;
+}
+
+.logo img {
+    max-height: 100%;
+    max-width: 272px;
+    object-fit: contain;
+    object-position: center bottom;
+    width: auto;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+    margin: 20px auto;
+    position: relative;
+    width: auto;
+    max-width: 584px;
+}
+
+.search-bar input[type="text"] {
+    background-color: transparent;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    color: rgba(0, 0, 0, .87);
+    font-size: 16px;
+    margin: 0;
+    padding: 0 45px;
+    height: 44px;
+    width: 487px;
+}
+
+.search-bar input[type="text"]:hover,
+.search-bar input[type="text"]:focus {
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgba(32, 33, 36, .28);
+    border-color: rgba(223, 225, 229, 0);
+}
+
+.search-icon,
+.mic-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9aa0a6;
+    cursor: pointer;
+}
+
+.search-icon {
+    left: 14px;
+}
+
+.search-icon .material-icons {
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.mic-icon {
+    right: 16px;
+}
+
+.mic-icon .material-icons {
+    font-size: 24px;
+    line-height: 24px;
+}
+
+/* Botones de búsqueda */
+.search-buttons {
+    margin-top: 20px;
+}
+
+.search-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: 1px solid #d9d9d9;
+    background-color: #f8f8f8;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-buttons button:hover {
+    background-color: #e8e8e8;
+}
+
+/* Footer */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    color: #666;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.footer-links a {
+    color: #666;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
