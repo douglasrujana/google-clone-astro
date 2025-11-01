@@ -1,4 +1,5 @@
 import { OAuth2Client } from 'google-auth-library';
+import { z } from 'zod';
 import jwt from 'jsonwebtoken';
 
 // Las variables de entorno se manejan así en Astro
@@ -9,6 +10,14 @@ const JWT_SECRET = import.meta.env.JWT_SECRET;
 const client = new OAuth2Client(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, 'http://localhost:4321/auth/callback');
 
 // En Astro, exportamos una función por cada método HTTP
+// 1. Definimos un esquema con Zod para el perfil de usuario de Google
+// Esto asegura que los datos que recibimos tienen la forma que esperamos.
+const googleUserProfileSchema = z.object({
+  name: z.string().min(1, "El nombre no puede estar vacío"),
+  picture: z.string().url("La imagen de perfil debe ser una URL válida"),
+  email: z.string().email("El email debe ser un correo electrónico válido"),
+});
+
 export async function POST({ request }) {
   console.log('Auth endpoint hit. Processing POST request...');
   try {
@@ -31,6 +40,7 @@ export async function POST({ request }) {
     console.log('Exchanging authorization code for tokens...');
     const { tokens } = await client.getToken(code);
     const idToken = tokens.id_token;
+    const accessToken = tokens.access_token; // ¡Aquí está!
     console.log('Tokens received. ID Token present:', !!idToken);
 
     if (!idToken) {
@@ -57,6 +67,7 @@ export async function POST({ request }) {
       email: payload.email,
       name: payload.name,
       picture: payload.picture,
+      accessToken: accessToken, // Lo guardamos en nuestro token
     };
 
     console.log('Signing JWT token...');

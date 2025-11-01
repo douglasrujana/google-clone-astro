@@ -9,12 +9,11 @@ body {
     background-color: #fff;
     color: #202124;
 }
-
 /* Barra de navegación superior */
 .top-nav {
-    height: 60px;
-    padding: 6px;
-    box-sizing: border-box;
+	height: 60px;
+	padding: 6px;
+	box-sizing: border-box;
 }
 
 .nav-links {

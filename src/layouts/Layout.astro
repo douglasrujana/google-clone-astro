@@ -14,13 +14,14 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
 		/>
 		<title>{title}</title>
 	</head>
 	<body>
 		<slot />
-		<!-- Añadimos las librerías necesarias para i18next -->
 		<script is:inline src="https://unpkg.com/i18next/dist/umd/i18next.min.js"
 		></script>
 		<script

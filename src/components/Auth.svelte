@@ -39,9 +39,7 @@
 
 <style>
 	.auth-widget {
-		position: absolute;
-		top: 15px;
-		right: 15px;
+		/* Eliminamos el posicionamiento absoluto */
 	}
 	.user-info {
 		display: flex;

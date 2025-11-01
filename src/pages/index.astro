@@ -1,7 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Auth from "../components/Auth.svelte";
+import jwt from "jsonwebtoken";
+
+// Lógica del lado del servidor para leer la cookie y verificar el token
+const token = Astro.cookies.get("authToken")?.value;
+let userProfile = null;
+
+if (token) {
+	try {
+		// Usamos la misma clave secreta que en el endpoint de auth
+		const decoded = jwt.verify(token, import.meta.env.JWT_SECRET);
+		userProfile = {
+			name: decoded.name,
+			picture: decoded.picture,
+		};
+	} catch (error) {
+		console.error("Failed to verify token:", error.message);
+		// Si el token es inválido (expirado, etc.), lo ignoramos
+	}
+}
 ---
+
 <Layout title="Google Inspirado">
 	<nav class="top-nav">
 		<div class="nav-links">
@@ -10,17 +30,13 @@ import Auth from "../components/Auth.svelte";
 			<button class="apps-button" aria-label="Aplicaciones de Google">
 				<span class="material-icons">apps</span>
 			</button>
-			<div>
-				<Auth client:load />
-			</div>
+			<Auth client:load userProfile={userProfile} />
 		</div>
 	</nav>
-
 	<div class="main-container">
 		<div class="logo">
 			<img src="/assets/images/googlelogo_color_272x92dp.png" alt="Google" />
 		</div>
-
 		<div class="search-bar">
 			<span class="material-icons search-icon">search</span>
 			<input
@@ -32,13 +48,11 @@ import Auth from "../components/Auth.svelte";
 			/>
 			<span class="material-icons mic-icon">mic</span>
 		</div>
-
 		<div class="search-buttons">
 			<button data-i18n="searchButton">Buscar con Google</button>
 			<button data-i18n="luckyButton">Voy a tener suerte</button>
 		</div>
 	</div>
-
 	<footer class="footer">
 		<p>
 			<span data-i18n="footerInspired">Google Inspirado</span> © <span
